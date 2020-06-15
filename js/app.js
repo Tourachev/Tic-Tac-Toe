@@ -92,7 +92,7 @@ const gamePlay = (() => {
             switchTurn();
             gameStatus.textContent = `${currentPlayer.name}'s Turn`;
           } else {
-            gameStatus.textContent = `Winner is ${currentPlayer.name}`;
+            gameStatus.textContent = `Winner is ${currentPlayer.name}!!!`;
             board.reset();
             board.render();
           }
