@@ -1,17 +1,10 @@
-
-  
-  .hidden {
-    display: none;
-  }
-  
+.hidden {
+  display: none;
+}
 
 td {
   width: 100px;
   height: 100px;
-}
-
-.winner{
-    color: lightgreen;
 }
 
 table {

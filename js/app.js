@@ -61,7 +61,7 @@ const gamePlay = (() => {
     const playerTwoName = document.querySelector('#player2');
     const form = document.querySelector('.player-info');
     const resetBtn = document.querySelector('#reset');
-
+     
     let currentPlayer;
     let playerOne;
     let playerTwo;
@@ -76,7 +76,7 @@ const gamePlay = (() => {
       if (currentPlayer.name !== '') {
         gameStatus.textContent = `${currentPlayer.name}'s Turn`;
       } else {
-        gameStatus.textContent = 'Board: ';
+        gameStatus.textContent = '';
       }
   
       board.gameBoard.addEventListener('click', (event) => {
@@ -92,8 +92,9 @@ const gamePlay = (() => {
             switchTurn();
             gameStatus.textContent = `${currentPlayer.name}'s Turn`;
           } else {
+
+            // End of game add green color
             gameStatus.textContent = `Winner is ${currentPlayer.name}!!!`;
-            board.reset();
             board.render();
           }
         }
@@ -108,24 +109,34 @@ const gamePlay = (() => {
         gameRound();
       }
     };
+
+    const boardContent = document.querySelector('#game-board');
   
     form.addEventListener('submit', (event) => {
+
       event.preventDefault();
       if (playerOneName.value !== '' && playerTwoName.value !== '') {
         gameInit();
         form.classList.add('hidden');
+        boardContent.classList.remove('hidden');
+
       } else {
         window.location.reload();
       }
     });
   
     resetBtn.addEventListener('click', () => {
-      document.querySelector('.game-status').textContent = 'Board: ';
+      const board = boardModule;
+
+      board.reset();
+      boardContent.classList.add('hidden');
+
+      document.querySelector('.game-status').textContent = '';
       document.querySelector('#player1').value = '';
       document.querySelector('#player2').value = '';
       window.location.reload();
     });
-    return {
-      gameInit,
-    };
+
+    return gameInit
+
   })();
